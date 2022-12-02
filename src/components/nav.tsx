@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { useLocation } from "@reach/router";
 import { Link, navigate } from "gatsby";
 import { projects } from "../assets/content"
 import { skillsRecord } from "../assets/skillSet";
