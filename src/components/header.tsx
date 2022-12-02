@@ -1,11 +1,10 @@
 import React from "react";
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image";
+import MenuButton from "./menubutton";
 
 type HeaderProps = {
-  className?: string,
-  isMenuShown: boolean;
-  onClickHandler: () => void;
+  className?: string;
 }
 
 const tw = {
@@ -13,13 +12,7 @@ const tw = {
   logoText: "opacity-0 sm:opacity-100 inline-block origin-left scale-x-0 sm:scale-x-100 absolute sm:static",
 }
 
-const Header = ({ className, isMenuShown, onClickHandler }: HeaderProps) => {
-  const onMenuButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    onClickHandler();
-  }
-
-  return(
+const Header = ({ className }: HeaderProps) => (
     <header className={`${className} flex flex-row justify-between relative z-50`}>
       <Link
         to="/"
@@ -37,12 +30,8 @@ const Header = ({ className, isMenuShown, onClickHandler }: HeaderProps) => {
           <span>{"/>"}</span>
         </span>
       </Link>
-      <button
-        onClick={onMenuButtonClick}
-        className="font-MaterialSymbols lg:hidden text-4xl"
-      >{isMenuShown ? "close" : "menu" }</button>
+      <MenuButton />
     </header>
-  );
-}
+  )
 
-export default Header
+export default Header;

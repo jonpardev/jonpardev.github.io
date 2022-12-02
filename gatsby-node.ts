@@ -7,6 +7,7 @@
 import path from "path";
 import { projects } from "./src/assets/content";
 import type { GatsbyNode } from "gatsby";
+import wrapWithProvider from './wrap-with-provider';
 
 export const createPages: GatsbyNode["createPages"] = ({ actions }) => {
   const { createPage } = actions;
@@ -18,3 +19,5 @@ export const createPages: GatsbyNode["createPages"] = ({ actions }) => {
     });
   });
 }
+
+export const wrapRootElement = wrapWithProvider;

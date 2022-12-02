@@ -1,34 +1,37 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { createContext, Dispatch, ReactNode, SetStateAction, useEffect, useState } from "react";
 import { useLocation } from "@gatsbyjs/reach-router";
 import Header from "./header";
 import Footer from "./footer";
 import Nav from "./nav";
+import { useAppSelector } from "../state/hooks";
 
 type LayoutProps = {
   children?: ReactNode;
 }
+
+type MenuShownContext = {
+  isMenuShown: boolean;
+  setIsMenuShown: Dispatch<SetStateAction<boolean>>;
+}
+
+export const MenuShownContext = createContext<MenuShownContext | undefined>(undefined);
 
 const Layout = ({ children }: LayoutProps) => {
   const tw = {
     flexBox: "pb-6 sm:pb-0",
   }
 
-  const [isMenuShown, setIsMenuShown] = useState(false);
+  const isMenuShown = useAppSelector(state => state.menuButton.isShown); 
 
   const pathname = useLocation() !== undefined ? useLocation().pathname : undefined;
   const search = useLocation() !== undefined ? useLocation().search : undefined;
-  useEffect(() => { if (search !== undefined && search.length > 0) toggleMenuShown(); }, [search]);
-
-  const toggleMenuShown = () => setIsMenuShown(prev => !prev);
+  // useEffect(() => { if (search !== undefined && search.length > 0) toggleMenuShown(); }, [search]);
 
   return (
     <div
       className="min-h-screen grid grid-cols-1 lg:grid-cols-[max-content_max-content_1fr] grid-rows-[max-content_max-content_max-content] lg:grid-rows-[1fr_max-content] bg-black text-white p-6 sm:p-16 gap-16"
     >
-      <Header
-        isMenuShown={isMenuShown}
-        onClickHandler={toggleMenuShown}
-      />
+      <Header />
       <Nav
         pathname={pathname ?? ""}
         search={search ?? ""}

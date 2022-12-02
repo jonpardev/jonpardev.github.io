@@ -5,9 +5,11 @@ import { whoIAmArr } from "../assets/content";
 import wait from "../helpers/wait";
 import HorizontalRule from "../components/horizontalrule";
 import { skillsRecord } from "../assets/skillSet";
-import { Link } from "gatsby";
+import { Link, PageProps } from "gatsby";
+import { useAppDispatch } from "../state/hooks";
+import { setIsShown } from "../state/menuButtonSlice";
 
-const IndexPage = () => {
+const Index = ({}: PageProps) => {
   const [whoIAmIndex, setWhoIAmIndex] = useState(0);
   const [iAm, setIAm] = useState("");
 
@@ -43,21 +45,22 @@ const IndexPage = () => {
       );
   }, [whoIAmIndex]);
 
+  const dispatch = useAppDispatch();
+
   return(
     <Layout>
-      <div>
-        <h1 className="text-xl text-white">Want to see projects used a specific skill?</h1>
-        <div className="text-white flex flex-row justify-start gap-5 my-10 flex-wrap">
-        {Object.keys(skillsRecord).map((key) => (
-          <Link
-            key={key}
-            to={`?tag=${key}`}
-            className="rounded-full px-4 py-1 border-2 no-underline border-white hover:bg-white hover:text-black active:scale-105 transition-colors duration-300"
-          >
-            {skillsRecord[key].title}
-          </Link>
-        ))}
-        </div>
+      <h1 className="text-xl text-white">Want to see projects used a specific skill?</h1>
+      <div className="text-white flex flex-row justify-start gap-5 my-10 flex-wrap">
+      {Object.keys(skillsRecord).map((key) => (
+        <Link
+          key={key}
+          to={`?tag=${key}`}
+          className="rounded-full px-4 py-1 border-2 no-underline border-white hover:bg-white hover:text-black active:scale-105 transition-colors duration-300"
+          onClick={() => dispatch(setIsShown(true))}
+        >
+          {skillsRecord[key].title}
+        </Link>
+      ))}
       </div>
       <HorizontalRule className="my-5" title="OR" />
       <div className="text-white space-y-6">
@@ -78,4 +81,4 @@ const IndexPage = () => {
 
 export const Head = () => <Seo title="by Jonny Park" />
 
-export default IndexPage;
+export default Index;

@@ -3,6 +3,8 @@ import { Link, navigate } from "gatsby";
 import { projects } from "../assets/content"
 import { skillsRecord } from "../assets/skillSet";
 import hasTag from "../helpers/hasTag";
+import { useAppDispatch } from "../state/hooks";
+import { setIsShown } from "../state/menuButtonSlice";
 
 type NavProps = {
   className?: string;
@@ -12,8 +14,9 @@ type NavProps = {
 
 const Nav = ({ className, search, pathname }: NavProps) => {
   const tag = (new URLSearchParams(search)).get("tag");
-
   useEffect(() => { if (tag && !skillsRecord[tag]) navigate("404") }, [tag]);
+
+  const dispatch = useAppDispatch();
 
   return(
     <nav className={`${className} space-y-6 flex flex-col text-5xl lg:text-4xl xl:text-5xl whitespace-nowrap`}>
@@ -28,9 +31,10 @@ const Nav = ({ className, search, pathname }: NavProps) => {
       )}
       {Object.keys(projects).map(key => (
         <Link
-        key={key}
+          key={key}
           to={tag ? `/project/${key}?tag=${tag}` : `/project/${key}`}
           className={`block w-fit font-black transition-all duration-300 leading-none ${(tag && `-skew-y-6 ${!hasTag(key, tag) && "text-2xl opacity-50"}`)}`}
+          onClick={() => dispatch(setIsShown(false))}
         >{projects[key].title}</Link>
       ))}
     </nav>
