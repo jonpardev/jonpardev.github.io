@@ -32,7 +32,7 @@ const Layout = ({ children }: LayoutProps) => {
       <Nav
         pathname={pathname ?? ""}
         search={search ?? ""}
-        className={`absolute lg:static top-0 left-0 min-w-full lg:w-auto min-h-screen lg:h-full bg-black lg:row-span-2 p-6 sm:p-16 lg:p-0 pt-32 sm:pt-44 ${isMenuShown ? "z-10" : "hidden lg:block -z-50 lg:z-0"}`}
+        className={`absolute lg:static top-0 left-0 w-full lg:w-fit h-full bg-black lg:row-span-2 p-6 sm:p-16 lg:p-0 pt-32 sm:pt-44 ${isMenuShown ? "z-10" : "hidden lg:block -z-50 lg:z-0"}`}
       />
       <main className={`lg:row-span-2 ${isMenuShown && "hidden lg:block"}`}>{children}</main>
       <Footer />

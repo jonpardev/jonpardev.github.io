@@ -5,9 +5,18 @@
 > Link: [jonpardev.github.io](https://jonpardev.github.io/)
 > A showcase and a hub for my personal projects built with React.
 
-## v1.1
-* Change the library from React to Gatsby.
-* Mobile layout
+## v1.1.1
+* Change the animation of the title for Safari.
+* Change the width of Nav for Safari.
+* Add the background color for iOS Safari.
+
+<details><summary>:page_with_curl: More Changelog</summary><blockquote><br />
+  <h3>v1.1</h3>
+  <ul>
+    <li>Change the library from React to Gatsby.</li>
+    <li>Mobile layout.</li>
+  </ul>
+<br /></blockquote></details>
 
 ## License
 
@@ -24,3 +33,4 @@ You can use this code for you. But, ⚠️ I don't have rights for icons used in
 
 ## To Do List
 [ ] better mobile layout
+[ ] show screenshots in Details

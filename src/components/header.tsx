@@ -10,7 +10,7 @@ type HeaderProps = {
 
 const tw = {
   transition: "transition-all ease-in-out duration-500",
-  logoText: "opacity-0 sm:opacity-100 text-[0] sm:text-xl",
+  logoText: "opacity-0 sm:opacity-100 inline-block origin-left scale-x-0 sm:scale-x-100 absolute sm:static",
 }
 
 const Header = ({ className, isMenuShown, onClickHandler }: HeaderProps) => {
@@ -29,10 +29,13 @@ const Header = ({ className, isMenuShown, onClickHandler }: HeaderProps) => {
           src="../assets/images/logo.svg"
           className="w-[3em] lg:w-[4em]" alt="Front-Page Logo"
         />
-        <div className="font-black leading-none whitespace-nowrap">
-          <span>{"<J"}<span className={`${tw.logoText} ${tw.transition}`}>onny </span>P
-          <span className={`${tw.logoText} ${tw.transition}`}>ark</span>{" />"}</span>
-        </div>
+        <span className="font-black leading-none whitespace-nowrap">
+          <span>{"<J"}</span>
+            <span className={`${tw.logoText} ${tw.transition}`}>onny</span>
+          <span>P</span>
+            <span className={`${tw.logoText} ${tw.transition}`}>ark</span>
+          <span>{"/>"}</span>
+        </span>
       </Link>
       <button
         onClick={onMenuButtonClick}
