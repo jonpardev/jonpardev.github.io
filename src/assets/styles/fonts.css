@@ -1,0 +1,24 @@
+@font-face {
+  font-family: "Bitter";
+  font-weight: 100 900;
+  src:
+      url("../fonts/Bitter.woff2")
+      format("woff2 supports variations"),
+      url("../fonts/Bitter.woff2")
+      format("woff2-variations"),
+      url("../fonts/Bitter.woff2")
+      format("woff2");
+}
+
+@font-face {
+  font-family: "MaterialSymbolsOutlined";
+  font-style: normal;
+  font-weight: 100 700;
+  src:
+      url("../fonts/MaterialSymbolsOutlined.woff2")
+      format("woff2 supports variations"),
+      url("../fonts/MaterialSymbolsOutlined.woff2")
+      format("woff2-variations"),
+      url("../fonts/MaterialSymbolsOutlined.woff2")
+      format("woff2");
+}
