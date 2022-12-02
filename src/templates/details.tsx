@@ -18,56 +18,66 @@ const Details = ({ pageContext }: PageProps<object, PageContextType>) => {
 				</div>
 				<section className="mt-10">
 					<h3 className="text-2xl xl:text-3xl mb-2">Skills</h3>
-					<ul className="list-disc pl-[1em]">
+					<ul className="list-disc list-inside whitespace-nowrap">
 					{pageContext.node.techArr?.map((stack, index) => (
-						<li key={index}>
-							<span className="text-neutral-500">{stack.title}: </span>
-							{stack.skills.map((skill, index) => (
-								<Fragment key={index}>
-								<div className="inline-flex flex-row items-baseline fill-white">
-									{skill.icon && (
-										<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-[1em] mx-1 my-auto">
-											<path d={skill.icon.svgPath} />
-										</svg>
-									)}
-									{(skill.internalLink || skill.externalLink) ? (
-										skill.internalLink ? (
-											<Link
-												to={skill.internalLink}
-												className="no-underline"
-											>{skill.title}</Link>
-										) : (
-											<a href={skill.externalLink}>{skill.title}</a>
-										)
-									) : (
-										<span>{skill.title}</span>
-									)}
+						<li key={index} className="mb-2 last:mb-0">
+							<div className="inline-flex flex-row gap-1">
+								<div className="text-neutral-500">{stack.title}: </div>
+								<div className="whitespace-normal">
+									{stack.skills.map((skill, index) => (
+										<Fragment key={index}>
+											<div className="inline-flex flex-row items-baseline fill-white">
+												{skill.icon && (
+													<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-[1em] mx-1 my-auto">
+														<path d={skill.icon.svgPath} />
+													</svg>
+												)}
+												{(skill.internalLink || skill.externalLink) ? (
+													skill.internalLink ? (
+														<Link
+															to={skill.internalLink}
+															className="no-underline"
+														>{skill.title}</Link>
+													) : (
+														<a href={skill.externalLink}>{skill.title}</a>
+													)
+												) : (
+													<span>{skill.title}</span>
+												)}
+											</div>
+											{(index < stack.skills.length - 1) && ', '}
+										</Fragment>
+									))}
 								</div>
-								{(index < stack.skills.length - 1) && ', '}
-								</Fragment>
-							))}
+							</div>
 						</li>
 					))}
 					</ul>
 				</section>
 				<section className="mt-10">
-					<h3 className="text-2xl xl:text-3xl mb-2">Description</h3>
-					<ul className="list-disc pl-[1em]">
-					{pageContext.node.descArr?.map((desc, index) => (
-						<li key={index}>{desc}</li>
-					))}
-					</ul>
-				</section>
-				<section className="mt-10">
 					<h3 className="text-2xl xl:text-3xl mb-2">Links</h3>
-					<div className="flex flex-row gap-x-5">
+					<div className="flex flex-row gap-4 flex-wrap">
 						{pageContext.node.linksArr?.map((link, index) => (
-							<a key={index} href={link.url} target="_blank"
-								className="rounded-md px-5 font-black bg-white text-neutral-900 opacity-50 transition-opacity duration-300 hover:opacity-100 active:scale-105">
+							<a
+								key={index}
+								href={link.url}
+								target="_blank"
+								className="rounded-md px-5 font-black bg-white text-neutral-900 opacity-50 transition-opacity duration-300 hover:opacity-100 active:scale-105 whitespace-nowrap"
+							>
 								{link.title}
 							</a>
 						))}
 						</div>
+				</section>
+				<section className="mt-10">
+					<h3 className="text-2xl xl:text-3xl mb-2">Description</h3>
+					<ul className="list-disc list-inside whitespace-nowrap">
+					{pageContext.node.descArr?.map((desc, index) => (
+						<li key={index} className="mb-2 last:mb-0">
+							<div className="inline-block whitespace-normal align-top">{desc}</div>
+						</li>
+					))}
+					</ul>
 				</section>
 				{/* {pageContext.node.screenShotUrl && (
 				<img src={new URL(`../../assets/images/${storedProject.screenShotUrl}`, import.meta.url).href}
